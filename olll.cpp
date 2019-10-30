@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     InnerProduct(V, B[p], B[p]);
     conv(v, V);
     SqrRoot(v, v);
-    outfile << "Index of shortest basis vector: " << p << "\n"
+    outfile << B << "\nIndex of shortest basis vector: " << p << "\n"
         << B[p] << "\n" << v << "\n";
     outfile.close();
 
@@ -229,19 +229,9 @@ static long oLLL(mat_ZZ& B)
     long counter = 1;
     while(counter){
         sort(P, m, D, V2);
-        //std::cout << loopcount << ": V2[P[0]]: " << V2[P[0]] << "\n";
-        //std::cout << "\n";
         reduce(B, P, m, n, M, V2, D, counter);
         loopcount++;
     }
-
-    // if(verbose){
-    //     std::cout << "\nAfter reduction:\n" << "B:\n" << B
-    //         << "\nV2:\n" << V2 << " V2[P[0]]: " << V2[P[0]]
-    //         << "\nM:\n" << M
-    //         << "\nD:\n" << D
-    //         << "\n";
-    // }
 
     return P[0];
 }
